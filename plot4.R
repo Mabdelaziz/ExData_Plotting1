@@ -6,7 +6,7 @@ plot4 <- function ( wd = "C:/f/R/git/ExData_Plotting1", datefrom = "31/1/2007" ,
   fn <- "household_power_consumption.txt"
   filen <- file.path (directory, fn)
   conn <- file ( filen , "r")
-  data<-read.table (conn , header=  TRUE , sep= ";")
+  data<-read.table (conn , header=  TRUE , sep= ";" ,na.strings="?")
   close(conn)
   
   #######################################################################
@@ -22,7 +22,7 @@ plot4 <- function ( wd = "C:/f/R/git/ExData_Plotting1", datefrom = "31/1/2007" ,
   data07$Global_active_power  <- as.numeric( data07$Global_active_power)
   
   #######################################################################
-  ## plot3
+  ## plot4
   
   par( mfrow = c( 2,2))
   RR<- with (data07 , { plot(   data07$datetime ,data07$Global_active_power/1000   , type ="l" , xlab= " "  , ylab = "Global Active Power"   ) 
@@ -34,7 +34,7 @@ plot4 <- function ( wd = "C:/f/R/git/ExData_Plotting1", datefrom = "31/1/2007" ,
   }
   )
   ## coping output to png file "plot4.png"
-  dev.copy(png,filename="plot4.png");
+  dev.copy(png,filename="plot4.png" , height=480, width=480);
   dev.off()
   
   return(RR)
